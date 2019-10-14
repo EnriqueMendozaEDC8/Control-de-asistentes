@@ -1,0 +1,10 @@
+{% extends "header.html" %}
+
+{% block title %}registro participante{% endblock %}
+{% block content %}
+<form action="../confirmacion/" method="post">
+    <label for="numeroparticipante">Numero:</label>
+    <input type="text" name="nombres" id="numeroparticipante" value="enrique" required>
+    <button type="submit">Enviar</button>
+</form>
+{% endblock %}

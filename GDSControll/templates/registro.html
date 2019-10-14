@@ -1,0 +1,17 @@
+{% extends "header.html" %}
+
+{% block title %}registro participante{% endblock %}
+{% block content %}
+<p>Aqui sera el registro de participantes</p>
+<form action="../confirmacion/" method="post">
+    <label for="nombres">Nombre(s):</label>
+    <input type="text" name="nombres" id="nombres" value="enrique" required>
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" name="apellidos" id="apellidos" value="mendoza" required>
+    <label for="telefono">Telefono:</label>
+    <input type="tel" name="telefono" id="telefono">
+    <label for="email">Email participante:</label>
+    <input type="email" name="email_participante" id="email" value="enrique.510.06@gmail.com" required>
+    <button type="submit">Registrarse</button>
+</form>
+{% endblock %}
