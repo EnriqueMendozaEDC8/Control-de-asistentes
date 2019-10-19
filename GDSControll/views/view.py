@@ -8,6 +8,9 @@ from datetime import date
 
 import datetime
 
+def menu(request):
+    return render(request, 'menu.html', {})
+    
 def registro(request):
     return render(request, 'registro.html', {})
 

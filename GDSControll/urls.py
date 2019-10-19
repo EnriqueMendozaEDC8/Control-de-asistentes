@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from GDSControll.views.view import registro,confirmacion,asistencia,MarcarAsistencia
+from GDSControll.views.view import registro,confirmacion,asistencia,MarcarAsistencia,menu
 from asistentes.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', menu),
+    path('/', menu),
     path('registro/', registro),
     path('confirmacion/', confirmacion),
     path('asistencia/', asistencia),
