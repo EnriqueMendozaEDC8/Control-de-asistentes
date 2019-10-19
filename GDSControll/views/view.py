@@ -16,19 +16,22 @@ def asistencia(request):
 
 @csrf_exempt
 def confirmacion(request):
-    nombre = request.POST['nombres']
-    apellido = request.POST['apellidos']
-    telefono = request.POST['telefono']
-    email = request.POST['email_participante']
-    fecha_registro = date.today()
-    existe = Participantes.objects.filter(email = email)
-    if ( len(existe) == 0):
-        participante = Participantes(nombres = nombre,apellidos = apellido,telefono = telefono,email = email,fecha_registro = fecha_registro)
-        participante.save()
-        numparticipante = participante.id
-    else: 
-        numparticipante = existe[0].id
-
+    
+    try:
+        nombre = request.POST['nombres']
+        apellido = request.POST['apellidos']
+        telefono = request.POST['telefono']
+        email = request.POST['email_participante']
+        fecha_registro = date.today()
+        existe = Participantes.objects.filter(email = email)
+        if ( len(existe) == 0):
+            participante = Participantes(nombres = nombre,apellidos = apellido,telefono = telefono,email = email,fecha_registro = fecha_registro)
+            participante.save()
+            numparticipante = participante.id
+        else: 
+            numparticipante = existe[0].id
+    except:
+        return render(request, 'registro.html', {})
     participante = Participantes.objects.get(id = numparticipante)
     asistencia = Asistencia.objects.filter(participante = numparticipante)
     if ( len(asistencia) == 0):
@@ -37,9 +40,27 @@ def confirmacion(request):
     else:
         try:
             asistencia = Asistencia.objects.get(participante = participante)
-            asistencia.dia_uno = fecha_registro
-            asistencia.save()
-        except Model.DoesNotExist:
-            error = Model.objects.create(field=new_value)
-
+            if(not asistencia.dia_dos):
+                asistencia.dia_uno = fecha_registro
+                asistencia.save()
+        except:
+            print("error en la ejecucion")
     return render(request, 'confirmacion_registro.html', {"numparticipante":numparticipante})
+
+
+@csrf_exempt
+def MarcarAsistencia(request):
+    try:
+        numeroUsuario = request.POST['numeroUsuario']
+        asistencia = Asistencia.objects.get(participante = numeroUsuario)
+        fecha_registro = date.today()
+        if (not asistencia.dia_dos and fecha_registro != asistencia.dia_uno):
+            asistencia.dia_dos = fecha_registro
+            asistencia.save()
+            return render(request, 'asistencia.html', {"mensaje":"El registro fue un exito"})
+        if (not asistencia.dia_tres and fecha_registro != asistencia.dia_dos):
+            asistencia.dia_tres = fecha_registro
+            asistencia.save()
+        return render(request, 'asistencia.html', {})
+    except:
+        return render(request, 'asistencia.html', {"mensaje":"Usted no se encuentra registrado"})
