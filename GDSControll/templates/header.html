@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
     <title>{% block title %}{% endblock %}</title>
+    {% load static%}
+    {% comment %} Bootstrap files {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% comment %} Own files {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
     {% block content %}{% endblock %}
