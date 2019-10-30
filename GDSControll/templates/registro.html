@@ -1,17 +1,40 @@
 {% extends "header.html" %}
 
-{% block title %}registro participante{% endblock %}
+{% block title %}Registro de usuarios{% endblock %}
 {% block content %}
-<p>Aqui sera el registro de participantes</p>
-<form action="../confirmacion/" method="post">
-    <label for="nombres">Nombre(s):</label>
-    <input type="text" name="nombres" id="nombres" required>
-    <label for="apellidos">Apellidos:</label>
-    <input type="text" name="apellidos" id="apellidos" required>
-    <label for="telefono">Telefono:</label>
-    <input type="tel" name="telefono" id="telefono">
-    <label for="email">Email participante:</label>
-    <input type="email" name="email_participante" id="email" required>
-    <button type="submit">Registrarse</button>
-</form>
+{% load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/registro.css' %}">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Registro de usuarios</h1> 
+        </div>
+        <div class="col-sm-12">
+            <form action="../confirmacion/" method="post">
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="nombres">Nombre(s):</label>
+                        <input type="text" name="nombres" id="nombres" class="form-control" required>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label for="apellidos">Apellidos:</label>
+                        <input type="text" name="apellidos" id="apellidos" class="form-control" required>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label for="telefono">Telefono:</label>
+                        <input type="tel" name="telefono" id="telefono" class="form-control">
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email_participante" id="email" class="form-control" required>
+                    </div>
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary center-block btn-lg" type="submit">Registrarse</button>
+                        <a class="btn btn-secondary center-block btn-lg menuLinks" href="/">Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

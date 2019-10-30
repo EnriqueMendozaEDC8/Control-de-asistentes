@@ -11,6 +11,23 @@
     <script src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
+    {% load static%}
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="navbar-brand" href="/">
+                <img class="icono-menu" src="{% static 'images/logoGDS.png' %}">
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link nav-personal-mod" href="/registro/">Registrarse</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link nav-personal-mod" href="/asistencia/">Asistencia</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link nav-personal-mod" href="/recursos/">Recursos</a>
+        </li>
+    </ul> 
     {% block content %}{% endblock %}
 </body>
 </html>

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from GDSControll.views.view import registro,confirmacion,asistencia,MarcarAsistencia,menu
+from GDSControll.views.view import registro,confirmacion,asistencia,MarcarAsistencia,menu,recursos
 from asistentes.views import *
 
 urlpatterns = [
@@ -26,4 +26,5 @@ urlpatterns = [
     path('confirmacion/', confirmacion),
     path('asistencia/', asistencia),
     path('marcarasistencia/',MarcarAsistencia),
+    path('recursos/',recursos),
 ]

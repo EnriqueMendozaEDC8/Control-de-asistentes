@@ -4,11 +4,11 @@
 {% block content %}
 {% load static%}
 <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
-<div class="principal">
+{% comment %} <div class="principal">
     <div class="secondary">
         <a class="btn btn-dark center-block btn-lg menuLinks" href="/registro/">Registrarse</a>
         <a class="btn btn-dark center-block btn-lg menuLinks" href="/asistencia/">Asistencia</a>
         <a class="btn btn-dark center-block btn-lg menuLinks" href="/asistencia/">Recursos</a>
     </div>
-</div>
+</div> {% endcomment %}
 {% endblock %}

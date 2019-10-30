@@ -5,6 +5,7 @@ from django.shortcuts import render,render
 from django.views.decorators.csrf import csrf_exempt
 from asistentes.models import Participantes,Asistencia
 from datetime import date
+from django import db
 
 import datetime
 
@@ -17,10 +18,13 @@ def registro(request):
 def asistencia(request):
     return render(request, 'asistencia.html', {})
 
+def recursos(request):
+    return render(request, 'recursos.html', {})
+
 @csrf_exempt
 def confirmacion(request):
-    
     try:
+        db.connections.close_all()
         nombre = request.POST['nombres']
         apellido = request.POST['apellidos']
         telefono = request.POST['telefono']
@@ -54,6 +58,7 @@ def confirmacion(request):
 @csrf_exempt
 def MarcarAsistencia(request):
     try:
+        db.connections.close_all()
         numeroUsuario = request.POST['numeroUsuario']
         asistencia = Asistencia.objects.get(participante = numeroUsuario)
         fecha_registro = date.today()

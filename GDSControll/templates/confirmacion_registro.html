@@ -2,10 +2,26 @@
 
 {% block title %}registro participante{% endblock %}
 {% block content %}
-
-<h1>Gracias Jamer tu numero de participante es: </h1>
-<h1>
-    {{numparticipante}}
-</h1>
+{% load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/confirmacion.css' %}">
+<div class="container confirmacion-container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="participante-mensaje">Gracias Jamer tu numero de participante es: </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="participante-number">
+                {{numparticipante}}
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <a class="btn btn-secondary center-block btn-lg confirmacion-btn-regresar" href="/registro/">Regresar</a>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
