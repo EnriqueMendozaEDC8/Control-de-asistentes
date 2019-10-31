@@ -24,7 +24,6 @@ def recursos(request):
 @csrf_exempt
 def confirmacion(request):
     try:
-        db.connections.close_all()
         nombre = request.POST['nombres']
         apellido = request.POST['apellidos']
         telefono = request.POST['telefono']
@@ -58,7 +57,6 @@ def confirmacion(request):
 @csrf_exempt
 def MarcarAsistencia(request):
     try:
-        db.connections.close_all()
         numeroUsuario = request.POST['numeroUsuario']
         asistencia = Asistencia.objects.get(participante = numeroUsuario)
         fecha_registro = date.today()
