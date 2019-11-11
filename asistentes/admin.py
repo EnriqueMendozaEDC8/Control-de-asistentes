@@ -1,5 +1,5 @@
 from django.contrib import admin
-from asistentes.models import Participantes,Asistencia
+from asistentes.models import Participantes,Asistencia,Recursos,TemasRecursos
 # Register your models here.
 
 class ParticipantesAdmin(admin.ModelAdmin):
@@ -18,6 +18,21 @@ class AsistenciaAdmin(admin.ModelAdmin):
         
     get_participante.short_description = 'Participante'
     get_idparticipante.short_description = 'Id participante'
+
+class TemasRecursosAdmin(admin.ModelAdmin):
+    list_display = ('id','nombre_tema')
+    search_fields = ('id','nombre_tema')
+
+class RecursosAdmin(admin.ModelAdmin):
+    list_display = ('id','nombre', 'informacion_recurso', 'get_tema')
+    search_fields = ('id','nombre', 'informacion_recurso', 'tema')
+
+    def get_tema(self, obj):
+        return obj.tema.nombre_tema
+
+    get_tema.short_description = 'Tema'
     
 admin.site.register(Participantes,ParticipantesAdmin)
 admin.site.register(Asistencia,AsistenciaAdmin)
+admin.site.register(Recursos,RecursosAdmin)
+admin.site.register(TemasRecursos,TemasRecursosAdmin)

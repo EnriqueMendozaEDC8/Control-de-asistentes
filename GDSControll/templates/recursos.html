@@ -4,4 +4,27 @@
 {% block content %}
 {% load static%}
 <link rel="stylesheet" type="text/css" href="{% static 'css/recursos.css' %}">
+
+<div class="container">
+    <div class="row header-recursos">
+        <div class="col-sm-12">
+            <h1>Recursos</h1> 
+        </div>
+        <div class="col-sm-3"><h4>Recurso</h4></div>
+        <div class="col-sm-7"><h4>Link/Descripcion</h4></div>
+        <div class="col-sm-2"><h4>Tema</h4></div>
+    </div>
+    {% for recurso in recursos %}
+        <div class="row body-recursos">
+            <div class="col-sm-3"><h5>{{recurso.nombre}}</h5></div>
+            <div class="col-sm-7"><h5><a href="{{recurso.informacion_recurso}}">{{recurso.informacion_recurso}}</a></h5></div>
+            <div class="col-sm-2"><h5>{{recurso.tema.nombre_tema}}</h5></div>
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-sm-12" style="text-align: right;margin-top: 2vh;">
+            <a class="btn btn-secondary center-block btn-lg" href="/">Regresar</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

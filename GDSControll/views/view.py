@@ -3,7 +3,7 @@ from django.template import Template,Context
 from django.template.loader import get_template
 from django.shortcuts import render,render
 from django.views.decorators.csrf import csrf_exempt
-from asistentes.models import Participantes,Asistencia
+from asistentes.models import Participantes,Asistencia,Recursos
 from datetime import date
 from django import db
 
@@ -19,7 +19,11 @@ def asistencia(request):
     return render(request, 'asistencia.html', {})
 
 def recursos(request):
-    return render(request, 'recursos.html', {})
+    try:
+        recursos = Recursos.objects.all().order_by('tema')
+        return render(request, 'recursos.html', {'recursos': recursos})
+    except:
+        return render(request, 'recursos.html', {})
 
 @csrf_exempt
 def confirmacion(request):
