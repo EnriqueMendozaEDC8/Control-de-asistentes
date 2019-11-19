@@ -3,11 +3,12 @@ from django.template import Template,Context
 from django.template.loader import get_template
 from django.shortcuts import render,render
 from django.views.decorators.csrf import csrf_exempt
-from asistentes.models import Participantes,Asistencia,Recursos
-from datetime import date
 from django import db
 
-import datetime
+from asistentes.models import Participantes,Asistencia,Recursos
+from datetime import date
+
+import datetime,re
 
 def menu(request):
     return render(request, 'menu.html', {})
@@ -28,12 +29,16 @@ def recursos(request):
 @csrf_exempt
 def confirmacion(request):
     try:
+        if is_email(request.POST['email_participante']) and is_name(request.POST['nombres']) and is_name(request.POST['apellidos']):
+            return render(request, 'registro.html', {})
         nombre = request.POST['nombres']
         apellido = request.POST['apellidos']
-        telefono = request.POST['telefono']
+        telefono = str(request.POST['telefono'])
         email = request.POST['email_participante']
         fecha_registro = date.today()
         existe = Participantes.objects.filter(email = email)
+        if not request.POST['telefono'].isnumeric():
+            return render(request, 'registro.html', {})
         if ( len(existe) == 0):
             participante = Participantes(nombres = nombre,apellidos = apellido,telefono = telefono,email = email,fecha_registro = fecha_registro)
             participante.save()
@@ -74,3 +79,20 @@ def MarcarAsistencia(request):
         return render(request, 'asistencia.html', {})
     except:
         return render(request, 'asistencia.html', {"mensaje":"Usted no se encuentra registrado"})
+
+def is_name(name):
+    if len(name)<4 or len(name)> 40:
+        return False
+    expresion_regular = r"/^[A-Za-z\s]+$/g"
+    return re.match(expresion_regular, name) is not None
+
+def is_phone(phone):
+    if len(phone)<7 and len(phone)>15:
+        return False
+    return True
+
+def is_email(correo):
+    if len(correo)<10 or len(correo)> 60:
+        return False
+    expresion_regular = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"
+    return re.match(expresion_regular, correo) is not None
