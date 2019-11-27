@@ -1,0 +1,14 @@
+.icono-menu{
+    width: 3vw;
+    margin-left: 2vw;
+    min-width: 40px;
+}
+.nav-personal-mod{
+    color: #D84893;
+    font-weight: 600;
+}
+
+.nav-personal-mod:hover{
+    color: #42416C;
+    
+}
