@@ -5,6 +5,7 @@ class Participantes(models.Model):
     apellidos = models.CharField(max_length=100)
     telefono = models.CharField(max_length=100,blank=True,null=True)
     email = models.CharField(max_length=100)
+    rol = models.CharField(max_length=100,null=True)
     fecha_registro = models.DateField(blank=True,null=True)
     
     def __str__(self):

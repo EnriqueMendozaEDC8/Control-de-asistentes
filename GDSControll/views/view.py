@@ -35,12 +35,13 @@ def confirmacion(request):
         apellido = request.POST['apellidos']
         telefono = str(request.POST['telefono'])
         email = request.POST['email_participante']
+        rol = request.POST['rol']
         fecha_registro = date.today()
         existe = Participantes.objects.filter(email = email)
         if not request.POST['telefono'].isnumeric():
             return render(request, 'registro.html', {})
         if ( len(existe) == 0):
-            participante = Participantes(nombres = nombre,apellidos = apellido,telefono = telefono,email = email,fecha_registro = fecha_registro)
+            participante = Participantes(nombres = nombre,apellidos = apellido,telefono = telefono,email = email,fecha_registro = fecha_registro,rol=rol)
             participante.save()
             numparticipante = participante.id
         else: 
