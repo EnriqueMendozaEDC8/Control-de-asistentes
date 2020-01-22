@@ -1,6 +1,9 @@
 from django.contrib import admin
-from asistentes.models import Participantes,Asistencia,Recursos,TemasRecursos
+from asistentes.models import Participantes,Asistencia,Recursos,TemasRecursos,Rol
 # Register your models here.
+
+class RolAdmin(admin.ModelAdmin):
+    list_display = ('id','nombre_rol')
 
 class ParticipantesAdmin(admin.ModelAdmin):
     list_display = ('id','nombres', 'apellidos', 'email')
@@ -32,6 +35,7 @@ class RecursosAdmin(admin.ModelAdmin):
 
     get_tema.short_description = 'Tema'
     
+admin.site.register(Rol,RolAdmin)
 admin.site.register(Participantes,ParticipantesAdmin)
 admin.site.register(Asistencia,AsistenciaAdmin)
 admin.site.register(Recursos,RecursosAdmin)

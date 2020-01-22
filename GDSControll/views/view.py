@@ -5,7 +5,7 @@ from django.shortcuts import render,render
 from django.views.decorators.csrf import csrf_exempt
 from django import db
 
-from asistentes.models import Participantes,Asistencia,Recursos
+from asistentes.models import Participantes,Asistencia,Recursos,Rol
 from datetime import date
 
 import datetime,re
@@ -14,7 +14,8 @@ def menu(request):
     return render(request, 'menu.html', {})
     
 def registro(request):
-    return render(request, 'registro.html', {})
+    roles = Rol.objects.all()
+    return render(request, 'registro.html', {'roles':roles})
 
 def asistencia(request):
     return render(request, 'asistencia.html', {})
@@ -35,11 +36,12 @@ def confirmacion(request):
         apellido = request.POST['apellidos']
         telefono = str(request.POST['telefono'])
         email = request.POST['email_participante']
-        rol = request.POST['rol']
+        rol = Rol.objects.get(id = request.POST['rol'])
         fecha_registro = date.today()
         existe = Participantes.objects.filter(email = email)
         if not request.POST['telefono'].isnumeric():
-            return render(request, 'registro.html', {})
+            roles = Rol.objects.all()
+            return render(request, 'registro.html', {'roles':roles})
         if ( len(existe) == 0):
             participante = Participantes(nombres = nombre,apellidos = apellido,telefono = telefono,email = email,fecha_registro = fecha_registro,rol=rol)
             participante.save()

@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-sm-12 form-group">
                         <label for="telefono">Telefono:</label>
-                        <input type="number" name="telefono" id="telefono" class="form-control">
+                        <input type="number" name="telefono" id="telefono" class="form-control" required>
                     </div>
                     <div class="col-sm-12 form-group">
                         <label for="email">Email:</label>
@@ -31,10 +31,9 @@
                     <div class="col-sm-12 form-group">
                     <label for="roles">Rol:</label>
                         <select class="form-control" id="roles" name="rol">
-                            <option value="programador">programador</option>
-                            <option value="diseñador">diseñador</option>
-                            <option value="tester">tester</option>
-                            <option value="narrativa">narrativa</option>
+                            {% for rol in roles %}
+                                <option value={{rol.id}}>{{rol.nombre_rol}}</option>
+                            {% endfor %}
                     </select>
                     </div>
                     <div class="col-sm-12">
