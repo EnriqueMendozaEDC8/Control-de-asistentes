@@ -1,0 +1,29 @@
+{% extends "header.html" %}
+
+{% block title %}{% endblock %}
+{% block content %}
+{% load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/asistencia.css' %}">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Asistencia de usuario</h1> 
+        </div>
+        <div class="col-sm-12">
+            <form action="../marcarasistencia/" method="post">
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="numeroparticipante">Numero:</label>
+                        <input type="number" name="numeroUsuario" id="numeroUsuario"  class="form-control"  required>
+                    </div>
+                    <div class="col-sm-12">
+                        <button class="btn center-block btn-lg send-information" type="submit">Enviar</button>
+                        <a class="btn btn-secondary center-block btn-lg menuLinks" href="/">Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{{ mensaje }}
+{% endblock %}

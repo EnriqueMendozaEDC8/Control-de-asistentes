@@ -1,0 +1,27 @@
+{% extends "header.html" %}
+
+{% block title %}menu principal{% endblock %}
+{% block content %}
+{% load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+{% comment %} <div class="principal">
+    <div class="secondary">
+        <a class="btn btn-dark center-block btn-lg menuLinks" href="/registro/">Registrarse</a>
+        <a class="btn btn-dark center-block btn-lg menuLinks" href="/asistencia/">Asistencia</a>
+        <a class="btn btn-dark center-block btn-lg menuLinks" href="/asistencia/">Recursos</a>
+    </div>
+</div> {% endcomment %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <a href="https://www.facebook.com/GameDevelopmentSinaloa/">
+                <img class="banner" src="{% static 'images/banner2020.png' %}">
+            </a>
+        </div>
+        <div class="col-sm-12">
+            <h2 class="color-name">Patrocinadores</h2>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

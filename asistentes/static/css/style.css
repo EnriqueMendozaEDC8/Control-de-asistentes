@@ -9,6 +9,10 @@
 }
 
 .nav-personal-mod:hover{
-    color: #42416C;
-    
+    color: #42416C;   
+}
+
+.my-menu{
+    margin-bottom: 10px;
+    padding: .5em;
 }
