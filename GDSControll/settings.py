@@ -63,7 +63,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             TEMPLATESPATH,
-            'C:\\Users\\XXXX\\Documents\\python\\env\\app\\Control-de-asistentes\\asistentes\\templates'
+            'C:\\Users\\LordHirum\\Documents\\python\\env\\app\\Control-de-asistentes\\asistentes\\templates'
         ],
         'APP_DIRS': True,
         'OPTIONS': {

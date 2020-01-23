@@ -4,3 +4,10 @@
     background-color: #D84893;
     border: none;
 }
+
+.alert{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}

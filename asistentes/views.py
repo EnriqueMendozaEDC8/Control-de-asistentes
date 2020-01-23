@@ -75,11 +75,11 @@ def MarcarAsistencia(request):
         if (not asistencia.dia_dos and fecha_registro != asistencia.dia_uno):
             asistencia.dia_dos = fecha_registro
             asistencia.save()
-            return render(request, 'asistencia.html', {"mensaje":"El registro fue un exito"})
+            return render(request, 'asistencia.html', {"mensaje":"Se realizo registro de su asustencia"})
         if (not asistencia.dia_tres and fecha_registro != asistencia.dia_dos):
             asistencia.dia_tres = fecha_registro
             asistencia.save()
-        return render(request, 'asistencia.html', {})
+        return render(request, 'asistencia.html',{})
     except:
         return render(request, 'asistencia.html', {"mensaje":"Usted no se encuentra registrado"})
 
